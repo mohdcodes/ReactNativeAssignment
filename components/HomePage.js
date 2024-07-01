@@ -1,3 +1,4 @@
+// ----------------------------------------------------------- IMPORT SECTION------------------------------------------
 import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Entypo } from '@expo/vector-icons';
@@ -23,9 +24,12 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
   runOnJS,
+  withTiming,
 } from 'react-native-reanimated';
 import { StatusBar } from 'expo-status-bar';
+// ------------------------------------------------------------END OF IMPORT SECTION----------------------------------------------------
 
+// ---------------------------------------------------CUSTOM CARD DATA----------------------------------------------------------------
 const initialCards = [
   {
     id: 1,
@@ -88,19 +92,7 @@ const initialCards = [
     holder: 'Samantha Rodriguez',
   },
 ];
-
-const gradientColors = [
-  ['#FF5733', '#FFBD33'],
-  ['#33FF57', '#33FFBD'],
-  ['#5733FF', '#BD33FF'],
-  ['#FF33A8', '#FF33D7'],
-  ['#33FFF3', '#33D7FF'],
-  ['#FFD733', '#FF5733'],
-  ['#FF5733', '#FF33BD'],
-  ['#33FF57', '#FFBD33'],
-  ['#33FF57', '#FF5733'],
-  ['#FF33A8', '#FF33D7'],
-];
+// --------------------------------------------------------------CUSTOM CARD DATA ENDS-------------------------------------
 
 const HomePage = () => {
   const [cards, setCards] = useState(initialCards);
@@ -114,6 +106,7 @@ const HomePage = () => {
 
   return (
     <>
+      {/* ---------------------------------------------UPPER PART OF THE PAGE------------------------------------------ */}
       <View style={{ backgroundColor: '#1c1c1c' }}>
         <StatusBar hidden />
         <View
@@ -174,6 +167,7 @@ const HomePage = () => {
             </Text>
           </View>
         </View>
+        {/* -----------------------------------------------------TABS PART OF THE PAGE--------------------------------------------------- */}
         <View style={styles.container}>
           <TouchableOpacity>
             <MaterialCommunityIcons
@@ -198,6 +192,7 @@ const HomePage = () => {
             <MaterialIcons name="card-membership" size={24} color="#939393" />
           </TouchableOpacity>
         </View>
+        {/* -----------------------------------------------------------THE CARD SECTION----------------------------------- */}
         <View style={styles.container2}>
           {cards.slice(0, 3).map((card, index) => (
             <SlidingCard
@@ -208,6 +203,7 @@ const HomePage = () => {
             />
           ))}
         </View>
+        {/* -------------------------------------------PLUS ICON----------------------------- */}
         <View
           style={{
             width: 70,
@@ -229,25 +225,35 @@ const HomePage = () => {
   );
 };
 
-const SlidingCard = ({ cardDetails, onSlide, index }) => {
+// -----------------------------------------------------------------------ANIMATION CODING--------------------------------------------------------
+const SlidingCard = ({ cardDetails, gradientColors, onSlide, index }) => {
   const translateX = useSharedValue(0);
+  const opacity = useSharedValue(1);
 
   const panGesture = Gesture.Pan()
     .onUpdate((event) => {
       translateX.value = event.translationX;
+      opacity.value = withTiming(1 - Math.abs(event.translationX) / 300, {
+        duration: 200,
+      });
     })
     .onEnd((event) => {
       if (event.translationX > 150) {
-        runOnJS(onSlide)();
-        translateX.value = withSpring(0, { damping: 20, stiffness: 100 });
+        translateX.value = withTiming(300, { duration: 200 }, () => {
+          runOnJS(onSlide)();
+          translateX.value = withSpring(0, { damping: 20, stiffness: 100 });
+          opacity.value = withTiming(1, { duration: 200 });
+        });
       } else {
         translateX.value = withSpring(0, { damping: 20, stiffness: 100 });
+        opacity.value = withTiming(1, { duration: 200 });
       }
     });
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [{ translateX: translateX.value }],
+      opacity: opacity.value,
       zIndex: index - 3,
       position: 'absolute',
       top: index * 40, // Adjust this value to create spacing between stacked cards
@@ -261,7 +267,7 @@ const SlidingCard = ({ cardDetails, onSlide, index }) => {
     </GestureDetector>
   );
 };
-
+// --------------------------------------------------STYLING SECTION----------------------------------------------------------
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
