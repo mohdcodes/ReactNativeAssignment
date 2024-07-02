@@ -12,6 +12,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  Modal,
 } from 'react-native';
 import Card from './Card';
 import {
@@ -45,11 +46,11 @@ const initialCards = [
   },
   {
     id: 4,
-    img: require('../assets/card4.png'),
+    img: require('../assets/card5.png'),
   },
   {
     id: 5,
-    img: require('../assets/card6.png'),
+    img: require('../assets/card7.png'),
   },
   {
     id: 6,
@@ -57,7 +58,7 @@ const initialCards = [
   },
   {
     id: 7,
-    img: require('../assets/card7.png'),
+    img: require('../assets/card4.png'),
   },
   {
     id: 8,
@@ -76,6 +77,7 @@ const initialCards = [
 
 const HomePage = () => {
   const [cards, setCards] = useState(initialCards);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleCardSlide = (index) => {
     const updatedCards = [...cards];
@@ -196,11 +198,30 @@ const HomePage = () => {
             marginLeft: 300,
           }}
         >
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <Entypo name="plus" size={24} color="grey" />
           </TouchableOpacity>
         </View>
       </View>
+      {/* -----------------------------------------------------------MODAL SECTION------------------------------------------- */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Want to add a card?</Text>
+            <TouchableOpacity
+              style={{ ...styles.openButton, backgroundColor: '#2196F3' }}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </>
   );
 };
@@ -265,10 +286,45 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   cardContainer: {
     width: '100%',
     alignItems: 'center',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  openButton: {
+    backgroundColor: '#F194FF',
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
   },
 });
 
