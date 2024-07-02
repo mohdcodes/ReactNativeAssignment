@@ -212,7 +212,7 @@ const HomePage = () => {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Want to add a card?</Text>
+            <Text style={styles.modalText}>Modal Openend</Text>
             <TouchableOpacity
               style={{ ...styles.openButton, backgroundColor: '#2196F3' }}
               onPress={() => setModalVisible(!modalVisible)}
@@ -227,7 +227,7 @@ const HomePage = () => {
 };
 
 // -----------------------------------------------------------------------ANIMATION CODING--------------------------------------------------------
-const SlidingCard = ({ cardDetails, gradientColors, onSlide, index }) => {
+const SlidingCard = ({ cardDetails, onSlide, index }) => {
   const translateX = useSharedValue(0);
   const opacity = useSharedValue(1);
 
