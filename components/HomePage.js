@@ -151,26 +151,26 @@ const HomePage = () => {
         </View>
         {/* -----------------------------------------------------TABS PART OF THE PAGE--------------------------------------------------- */}
         <View style={styles.container}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <MaterialCommunityIcons
               name="fingerprint"
               size={30}
               color="#939393"
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <MaterialIcons name="flight-takeoff" size={24} color="#939393" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <FontAwesome6 name="droplet" size={24} color="#939393" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <MaterialIcons name="health-and-safety" size={24} color="#939393" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <MaterialIcons name="history-edu" size={24} color="#939393" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <MaterialIcons name="card-membership" size={24} color="#939393" />
           </TouchableOpacity>
         </View>
