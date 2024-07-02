@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import { Roboto_400Regular } from '@expo-google-fonts/roboto';
@@ -15,34 +15,62 @@ const Card = ({ cardDetails }) => {
   }
 
   return (
-    <LinearGradient
-      colors={['#4c669f', '#3b5998', '#192f6a']}
-      style={styles.card}
-    >
-      <View style={styles.chip} />
-      <Text style={[styles.cardNumber, { fontFamily: 'Roboto_400Regular' }]}>
-        {cardDetails.number}
-      </Text>
-      <View style={styles.row}>
-        <View style={styles.col}>
-          <Text style={[styles.label, { fontFamily: 'Roboto_400Regular' }]}>
-            Card Holder
-          </Text>
-          <Text style={[styles.value, { fontFamily: 'Roboto_400Regular' }]}>
-            {cardDetails.holder}
+    <>
+      {/* <LinearGradient
+        colors={['#4c669f', '#3b5998', '#192f6a']}
+        style={styles.card}
+      >
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginBottom: 10,
+          }}
+        >
+          <Image
+            source={require('../assets/sim.png')}
+            style={{ height: 35, width: 35, borderRadius: 5 }}
+          />
+          <Image
+            source={require('../assets/wifi.png')}
+            style={{ height: 35, width: 35, borderRadius: 5 }}
+          />
+        </View>
+        <Text style={[styles.cardNumber, { fontFamily: 'Roboto_400Regular' }]}>
+          {cardDetails.number}
+        </Text>
+        <View
+          style={{
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            // marginRight: 30,
+          }}
+        >
+          <View style={styles.row}>
+            <View style={styles.col}>
+              <Text style={[styles.label, { fontFamily: 'Roboto_400Regular' }]}>
+                Card Holder
+              </Text>
+              <Text style={[styles.value, { fontFamily: 'Roboto_400Regular' }]}>
+                {cardDetails.holder}
+              </Text>
+            </View>
+            <View style={styles.col}>
+              <Text style={[styles.label, { fontFamily: 'Roboto_400Regular' }]}>
+                Expiry
+              </Text>
+              <Text style={[styles.value, { fontFamily: 'Roboto_400Regular' }]}>
+                {cardDetails.expiry}
+              </Text>
+            </View>
+          </View>
+          <Text style={[styles.brand, { fontFamily: 'Inter_900Black' }]}>
+            VISA
           </Text>
         </View>
-        <View style={styles.col}>
-          <Text style={[styles.label, { fontFamily: 'Roboto_400Regular' }]}>
-            Expiry
-          </Text>
-          <Text style={[styles.value, { fontFamily: 'Roboto_400Regular' }]}>
-            {cardDetails.expiry}
-          </Text>
-        </View>
-      </View>
-      <Text style={[styles.brand, { fontFamily: 'Inter_900Black' }]}>VISA</Text>
-    </LinearGradient>
+      </LinearGradient> */}
+      <Image source={cardDetails.img} style={styles.card} />
+    </>
   );
 };
 
@@ -78,6 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   col: {
+    marginRight: 40,
     flexDirection: 'column',
   },
   label: {

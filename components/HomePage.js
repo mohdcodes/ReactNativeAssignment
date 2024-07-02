@@ -33,63 +33,43 @@ import { StatusBar } from 'expo-status-bar';
 const initialCards = [
   {
     id: 1,
-    number: '3234 8678 4234 7628',
-    expiry: '08/24',
-    holder: 'Maya Singh',
+    img: require('../assets/card1.png'),
   },
   {
     id: 2,
-    number: '1234 5678 9101 1122',
-    expiry: '11/24',
-    holder: 'Jane Smith',
+    img: require('../assets/card2.png'),
   },
   {
     id: 3,
-    number: '1234 5678 9101 1123',
-    expiry: '10/25',
-    holder: 'Robert Brown',
+    img: require('../assets/card3.png'),
   },
   {
     id: 4,
-    number: '1234 5678 9101 1124',
-    expiry: '09/26',
-    holder: 'Lucy Johnson',
+    img: require('../assets/card4.png'),
   },
   {
     id: 5,
-    number: '1234 5678 9101 1125',
-    expiry: '08/27',
-    holder: 'David Wilson',
+    img: require('../assets/card6.png'),
   },
   {
     id: 6,
-    number: '1234 5678 9101 1126',
-    expiry: '07/28',
-    holder: 'Laura White',
+    img: require('../assets/card6.png'),
   },
   {
     id: 7,
-    number: '1234 5678 9101 1127',
-    expiry: '06/29',
-    holder: 'Peter Davis',
+    img: require('../assets/card7.png'),
   },
   {
     id: 8,
-    number: '1234 5678 9101 1128',
-    expiry: '05/30',
-    holder: 'Emily Martinez',
+    img: require('../assets/card8.png'),
   },
   {
     id: 9,
-    number: '1234 5678 9101 1129',
-    expiry: '04/31',
-    holder: 'Daniel Garcia',
+    img: require('../assets/card9.png'),
   },
   {
     id: 10,
-    number: '1234 5678 9101 1130',
-    expiry: '03/32',
-    holder: 'Samantha Rodriguez',
+    img: require('../assets/card10.png'),
   },
 ];
 // --------------------------------------------------------------CUSTOM CARD DATA ENDS-------------------------------------
