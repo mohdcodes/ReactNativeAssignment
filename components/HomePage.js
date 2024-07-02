@@ -234,7 +234,7 @@ const SlidingCard = ({ cardDetails, gradientColors, onSlide, index }) => {
     return {
       transform: [{ translateX: translateX.value }],
       opacity: opacity.value,
-      zIndex: index - 3,
+      zIndex: 3 - index,
       position: 'absolute',
       top: index * 40, // Adjust this value to create spacing between stacked cards
     };
